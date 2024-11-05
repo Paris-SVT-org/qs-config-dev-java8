@@ -1,1 +1,1 @@
-# sample-config
+# Configuration for QuikcSec application. 
