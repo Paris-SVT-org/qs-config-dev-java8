@@ -2,25 +2,20 @@
 <!-- It is ok to use the below LDAP server but make sure to use the correct trust store so that LDAP connection can be on SSL -->
 
 	<!-- Enable features -->
-    <featureManager>
-		
-     <feature>jakartaee-10.0</feature>
-     <feature>microProfile-6.0</feature>
+	<featureManager>
+	 <feature>ejb-3.2</feature>
+     <feature>appSecurity-3.0</feature>  
+     <feature>transportSecurity-1.0</feature>
+     <feature>javaee-8.0</feature>
      <feature>ldapRegistry-3.0</feature>
-	    
-   </featureManager>
+     <feature>microProfile-3.3</feature>
+	</featureManager>
 
   <httpEndpoint host="*" httpPort="9080" httpsPort="9443" id="defaultHttpEndpoint"> 
     <tcpOptions soReuseAddr="true"/> 
     <httpOptions maxKeepAliveRequests="-1"/>
   </httpEndpoint>
-	<!-- Basic Registry -->
-    <basicRegistry id="basic" realm="basicRealm">
-      <user name="persona1" password="ppersona1"/>
-      <user name="persona2" password="ppersona2"/>
-      <user name="persona3" password="ppersona3"/>
-      <user name="persona4" password="ppersona4"/>
-    </basicRegistry>
+
   <mpMetrics authentication="false" />
   
 <!-- This is new property for 4Q to make JAPSIC application works like non-JAPIC -->
@@ -28,12 +23,28 @@
 
 <!-- This property was set to set custom cookie name to avoid conflict when using SSO -->
 <!--<webAppSecurity useOnlyCustomCookieName="true" ssoCookieName="mstCookie"/> -->  
- 
-<!-- Replace DB server information below to connect to your own DB server 
-        <authData id="DBAuth" password="${env.DBPass}" user="${env.DBUser}"/>
+ 	<!-- Basic Registry -->
+    <basicRegistry id="basic" realm="basicRealm">
+      <user name="persona1" password="ppersona1"/>
+      <user name="persona2" password="ppersona2"/>
+      <user name="persona3" password="ppersona3"/>
+      <user name="persona4" password="ppersona4"/>
+    </basicRegistry>
+	<!--
+    <ssl id="LDAPSSLSettings" keyStoreRef="ldaptruststore" trustStoreRef="ldaptruststore" />
+    <keyStore id="ldaptruststore" location="/config/trustStore.jks" type="JKS" password="passw0rd" />
+	<ldapRegistry host="isdsldap11.fyre.ibm.com" baseDN="o=ibm,c=us" port="9636" ldapType="IBM Tivoli Directory Server" id="LDAP_tdirsrv" sslEnabled="true" name="o=ldap1" sslRef="LDAPSSLSettings">
+	 <failoverServers name="isdsldapsvt backup">
+	  <server host="isdsldap21.fyre.ibm.com" port="9636"/>
+	  <server host="isdsldap31.fyre.ibm.com" port="9636"/>
+	 </failoverServers>
+	</ldapRegistry> -->
+	
+<!-- Replace DB server information below to connect to your own DB server -->
+        <authData id="DBAuth" password="letme1n2.2021Q1" user="db2inst1"/>
 
 	<dataSource containerAuthDataRef="DBAuth" id="Messenger" jdbcDriverRef="JDBCDriver" jndiName="jdbc/Messenger" type="javax.sql.XADataSource">
-         <properties.db2.jcc databaseName="${env.DBName}" driverType="4" password="${env.DBPass}" portNumber="${env.DBPort}" serverName="${env.DBHost}"  />
+         <properties.db2.jcc databaseName="MSGRDB" driverType="4" password="letme1n2.2021Q1" portNumber="50000" serverName="db2mst-1.fyre.ibm.com" user="db2inst1" />
 	</dataSource>
 
 	<jdbcDriver id="JDBCDriver">
@@ -41,22 +52,12 @@
 	  <fileset dir="/config/db2jars" id="db2jcc4" includes="db2jcc4.jar, db2jcc_license_cu.jar"/>
 	 </library>
 	</jdbcDriver>
--->
-	<include location="${shared.resource.dir}/ease/db2/jdbc4.xml"/>
 
-<dataSource jndiName="jdbc/Messenger"  jdbcDriverRef="ease.db2jcc4">
-  <properties.db2.jcc serverName="db2 hostname"
-                      portNumber="db2 port"
-                      databaseName="MSGRDB"
-                      sslConnection="true"
-                      user="db2 username"
-                      password="{mydb.password}"/>
-</dataSource>
 <!-- This allows certificate client to use basic authentication if certificate authentication does not succeed -->
 <!--	<webAppSecurity allowFailOverToBasicAuth="true" useAuthenticationDataForUnprotectedResource="false"/> -->
 	
 <!-- Binding for QuickSec application -->
-	<application context-root="QuickSec" id="QuickSec" location="QuickSec-ee8.ear" name="QuickSec" type="ear">
+	<application context-root="QuickSec" id="QuickSec" location="${server.config.dir}/apps/QuickSec.ear" name="QuickSec" type="ear">
 	<application-bnd> 
 	   <security-role name="OtherLogin_WebUsers">
 				<user name="tambolims@gmail.com"/>
@@ -134,11 +135,10 @@
 	</application>  
 
 	<httpOptions persistTimeout="300s" readTimeout="300s" writeTimeout="300s"/> 
-	
-	<logging  traceSpecification="com.ibm.ws.webcontainer*=all"/>
+
 <!--  
     <logging maxFileSize="100" traceSpecification="com.ibm.ws.svt.*=FINE"/>
-
 -->
         
 </server>
+
