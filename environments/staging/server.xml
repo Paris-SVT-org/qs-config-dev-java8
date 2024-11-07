@@ -33,9 +33,9 @@
       <user name="persona101" password="ppersona101"/>
     </basicRegistry> -->
 	
-    <!--<ssl id="LDAPSSLSettings" keyStoreRef="ldaptruststore" trustStoreRef="ldaptruststore" />
+    <ssl id="LDAPSSLSettings" keyStoreRef="ldaptruststore" trustStoreRef="ldaptruststore" />
     <keyStore id="ldaptruststore" location="/config/trustStore.jks" type="JKS" password="passw0rd" /> -->
-	<ldapRegistry host="ec2-35-153-18-9.compute-1.amazonaws.com" baseDN="o=ibm,c=us" port="9389" ldapType="IBM Tivoli Directory Server" id="LDAP_tdirsrv" sslEnabled="false" name="o=ldap1" sslRef="LDAPSSLSettings">
+	<ldapRegistry host="ec2-35-153-18-9.compute-1.amazonaws.com" baseDN="o=ibm,c=us" port="9636" ldapType="IBM Tivoli Directory Server" id="LDAP_tdirsrv" sslEnabled="true" name="o=ldap1" sslRef="LDAPSSLSettings">
 	<!-- <failoverServers name="isdsldapsvt backup">
 	  <server host="isdsldap21.fyre.ibm.com" port="9636"/>
 	  <server host="isdsldap31.fyre.ibm.com" port="9636"/>
