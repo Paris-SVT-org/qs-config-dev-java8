@@ -41,17 +41,16 @@
 	</ldapRegistry> -->
 	
 <!-- Replace DB server information below to connect to your own DB server -->
-        <authData id="DBAuth" password="letme1n2.2021Q1" user="db2inst1"/>
+        	<include location="${shared.resource.dir}/ease/db2/jdbc4.xml"/>
 
-	<dataSource containerAuthDataRef="DBAuth" id="Messenger" jdbcDriverRef="JDBCDriver" jndiName="jdbc/Messenger" type="javax.sql.XADataSource">
-         <properties.db2.jcc databaseName="MSGRDB" driverType="4" password="letme1n2.2021Q1" portNumber="50000" serverName="db2mst-1.fyre.ibm.com" user="db2inst1" />
-	</dataSource>
-
-	<jdbcDriver id="JDBCDriver">
-	 <library>
-	  <fileset dir="/config/db2jars" id="db2jcc4" includes="db2jcc4.jar, db2jcc_license_cu.jar"/>
-	 </library>
-	</jdbcDriver>
+<dataSource jndiName="jdbc/Messenger"  jdbcDriverRef="ease.db2jcc4">
+  <properties.db2.jcc serverName="ec2-35-153-18-9.compute-1.amazonaws.com"
+                      portNumber="60000"
+                      databaseName="MSGRDB"
+                      sslConnection="true"
+                      user="db2inst1"
+                      password="db2passw0rd"/>
+</dataSource>
 
 <!-- This allows certificate client to use basic authentication if certificate authentication does not succeed -->
 <!--	<webAppSecurity allowFailOverToBasicAuth="true" useAuthenticationDataForUnprotectedResource="false"/> -->
