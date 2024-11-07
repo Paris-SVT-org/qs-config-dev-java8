@@ -24,22 +24,23 @@
 <!-- This property was set to set custom cookie name to avoid conflict when using SSO -->
 <!--<webAppSecurity useOnlyCustomCookieName="true" ssoCookieName="mstCookie"/> -->  
  	<!-- Basic Registry -->
+	<!--
     <basicRegistry id="basic" realm="basicRealm">
       <user name="persona1" password="ppersona1"/>
       <user name="persona2" password="ppersona2"/>
       <user name="persona3" password="ppersona3"/>
       <user name="persona4" password="ppersona4"/>
       <user name="persona101" password="ppersona101"/>
-    </basicRegistry>
+    </basicRegistry> -->
 	<!--
-    <ssl id="LDAPSSLSettings" keyStoreRef="ldaptruststore" trustStoreRef="ldaptruststore" />
-    <keyStore id="ldaptruststore" location="/config/trustStore.jks" type="JKS" password="passw0rd" />
-	<ldapRegistry host="isdsldap11.fyre.ibm.com" baseDN="o=ibm,c=us" port="9636" ldapType="IBM Tivoli Directory Server" id="LDAP_tdirsrv" sslEnabled="true" name="o=ldap1" sslRef="LDAPSSLSettings">
+    <!--<ssl id="LDAPSSLSettings" keyStoreRef="ldaptruststore" trustStoreRef="ldaptruststore" />
+    <keyStore id="ldaptruststore" location="/config/trustStore.jks" type="JKS" password="passw0rd" /> -->
+	<ldapRegistry host="ec2-35-153-18-9.compute-1.amazonaws.com" baseDN="o=ibm,c=us" port="9389" ldapType="IBM Tivoli Directory Server" id="LDAP_tdirsrv" sslEnabled="false" name="o=ldap1" sslRef="LDAPSSLSettings">
 	 <failoverServers name="isdsldapsvt backup">
 	  <server host="isdsldap21.fyre.ibm.com" port="9636"/>
 	  <server host="isdsldap31.fyre.ibm.com" port="9636"/>
 	 </failoverServers>
-	</ldapRegistry> -->
+	</ldapRegistry> 
 	
 <!-- Replace DB server information below to connect to your own DB server -->
         	<include location="${shared.resource.dir}/ease/db2/jdbc4.xml"/>
