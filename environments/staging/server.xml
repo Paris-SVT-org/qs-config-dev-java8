@@ -36,10 +36,10 @@
     <!--<ssl id="LDAPSSLSettings" keyStoreRef="ldaptruststore" trustStoreRef="ldaptruststore" />
     <keyStore id="ldaptruststore" location="/config/trustStore.jks" type="JKS" password="passw0rd" /> -->
 	<ldapRegistry host="ec2-35-153-18-9.compute-1.amazonaws.com" baseDN="o=ibm,c=us" port="9389" ldapType="IBM Tivoli Directory Server" id="LDAP_tdirsrv" sslEnabled="false" name="o=ldap1" sslRef="LDAPSSLSettings">
-	 <failoverServers name="isdsldapsvt backup">
+	<!-- <failoverServers name="isdsldapsvt backup">
 	  <server host="isdsldap21.fyre.ibm.com" port="9636"/>
 	  <server host="isdsldap31.fyre.ibm.com" port="9636"/>
-	 </failoverServers>
+	 </failoverServers> -->
 	</ldapRegistry> 
 	
 <!-- Replace DB server information below to connect to your own DB server -->
@@ -85,7 +85,7 @@
 			</security-role>
 <!-- This role is used bu QuickSeBasic web module. Any user assigned to this role is not able to access the web module -->
 			<security-role name="BasicLoginDummy_WebUsers">
-				<user name="persona103"/>
+				<user name="persona1"/>
 				<group name="g11-20"/>
 			</security-role>
 			<security-role name="delegateUsers">
