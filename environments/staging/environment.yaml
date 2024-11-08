@@ -10,7 +10,7 @@ app:
     max: 1
   endpoints: public
   env:
-    - name: cert_ldaptruststore
+    - name: cert_defaultKeyStore
       value: "-----BEGIN CERTIFICATE-----
 MIIF0jCCA7qgAwIBAgIUHrVXdkOWiwoYO96Tl23+O+DL2IMwDQYJKoZIhvcNAQEL
 BQAwIzEhMB8GA1UEAwwYbmVzdC1sZGFwLTEuZnlyZS5pYm0uY29tMB4XDTIzMDYx
