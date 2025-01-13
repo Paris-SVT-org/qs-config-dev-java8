@@ -35,7 +35,7 @@
 	
     <ssl id="LDAPSSLSettings" keyStoreRef="defaultKeyStore" trustStoreRef="defaultKeyStore" />
   <!--  <keyStore id="ldaptruststore" location="/config/trustStore.jks" type="JKS" password="passw0rd" /> -->
-	<ldapRegistry host="ec2-52-87-90-56.compute-1.amazonaws.com" baseDN="o=ibm,c=us" port="9636" ldapType="IBM Tivoli Directory Server" id="LDAP_tdirsrv" sslEnabled="true" name="o=ldap1" sslRef="LDAPSSLSettings">
+	<ldapRegistry host="ec2-54-161-142-53.compute-1.amazonaws.com" baseDN="o=ibm,c=us" port="9636" ldapType="IBM Tivoli Directory Server" id="LDAP_tdirsrv" sslEnabled="true" name="o=ldap1" sslRef="LDAPSSLSettings">
 	<!-- <failoverServers name="isdsldapsvt backup">
 	  <server host="isdsldap21.fyre.ibm.com" port="9636"/>
 	  <server host="isdsldap31.fyre.ibm.com" port="9636"/>
@@ -46,7 +46,7 @@
         	<include location="${shared.resource.dir}/ease/db2/jdbc4.xml"/>
 
 <dataSource jndiName="jdbc/Messenger"  jdbcDriverRef="ease.db2jcc4">
-  <properties.db2.jcc serverName="ec2-52-87-90-56.compute-1.amazonaws.com"
+  <properties.db2.jcc serverName="ec2-54-161-142-53.compute-1.amazonaws.com"
                       portNumber="60000"
                       databaseName="MSGRDB"
                       sslConnection="false"
