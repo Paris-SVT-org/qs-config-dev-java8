@@ -11,7 +11,7 @@ app:
   endpoints: public
   variables:
     - name: bogusvar
-    - value: "bogusvar value"
+      value: "bogusvar value"
   systemProperties:
     - name: "com.sun.jndi.ldap.object.disableEndpointIdentification"
     - value: "true"
