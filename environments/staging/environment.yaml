@@ -13,8 +13,8 @@ app:
     - name: bogusvar
       value: "bogusvar value"
   systemProperties:
-    - name: "com.sun.jndi.ldap.object.disableEndpointIdentification"
-    - value: "true"
+    - name: com.sun.jndi.ldap.object.disableEndpointIdentification
+      value: "true"
   env:
     - name: cert_defaultKeyStore
       value: | 
