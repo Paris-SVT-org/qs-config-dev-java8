@@ -1,2 +1,2 @@
 # Configuration for QuikcSec application. 
-Test.
+This is working EE8 repository in EASeJ.
